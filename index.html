@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -382,6 +385,78 @@ button { font-family: inherit; }
   margin: 12px 0 0;
   line-height: 1.5;
 }
+
+/* UAE callback phone field */
+.phone-input-group {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+}
+.phone-prefix {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 13px;
+  border: 1px solid var(--gfc-border);
+  border-right: 0;
+  border-radius: 8px 0 0 8px;
+  background: #f7f9fc;
+  color: var(--gfc-ink);
+  font-size: 14.5px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.lead-form .phone-input-group input {
+  border-radius: 0 8px 8px 0;
+  min-width: 0;
+}
+.phone-input-group.field-error-group .phone-prefix,
+.phone-input-group.field-error-group input {
+  border-color: var(--gfc-red);
+}
+.phone-input-group.field-valid-group .phone-prefix,
+.phone-input-group.field-valid-group input {
+  border-color: #2f9e5b;
+}
+.phone-valid-msg {
+  display: none;
+  margin: 6px 0 0;
+  color: #258a4d;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+.phone-valid-msg.show {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.phone-valid-msg .valid-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #2f9e5b;
+  color: #fff;
+  font-size: 11px;
+  line-height: 1;
+}
+.callback-success {
+  display: none;
+  margin-top: 16px;
+  padding: 14px 16px;
+  border: 1px solid #b8dfc6;
+  border-radius: 10px;
+  background: #f1fbf5;
+  color: #176b35;
+  font-size: 13.5px;
+  font-weight: 700;
+  line-height: 1.45;
+  text-align: center;
+}
+.callback-success.show { display: block; }
 
 .quiz-next {
   width: 100%;
@@ -960,7 +1035,7 @@ body { padding-bottom: 74px; }
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
         t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "y49ru35ixy");
+    })(window, document, "clarity", "script", "yciyqs0vfr");
 </script>
 
 </head>
@@ -1023,19 +1098,13 @@ body { padding-bottom: 74px; }
         <li><span class="check-icon"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span> Simplified return elected, prepared and filed - no taxable income calculation needed</li>
       </ul>
 
-      <div class="btn-row">
-        <a class="btn btn-whatsapp" href="https://api.whatsapp.com/send?phone=971503098987&text=Hi%20GFC%2C%20I%20need%20help%20with%20my%20Small%20Business%20Relief%20filing." target="_blank" rel="noopener">
-          <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.52 0-10 4.48-10 10 0 1.77.46 3.45 1.27 4.9L2 22l5.25-1.38a9.94 9.94 0 004.79 1.22h.01c5.52 0 10-4.48 10-10s-4.48-9.84-10.02-9.84zm5.85 14.13c-.25.7-1.45 1.34-2 1.42-.51.08-1.15.11-1.86-.12-.43-.14-.98-.32-1.68-.62-2.96-1.28-4.89-4.25-5.04-4.45-.15-.2-1.21-1.61-1.21-3.07 0-1.46.77-2.18 1.04-2.47.27-.29.6-.36.8-.36.2 0 .4 0 .57.01.18.01.43-.07.68.51.25.6.85 2.06.93 2.21.08.15.13.33.03.53-.1.2-.15.33-.3.5-.15.18-.31.4-.45.53-.15.15-.3.31-.13.61.17.3.77 1.26 1.65 2.04 1.14 1.01 2.1 1.33 2.4 1.48.3.15.48.13.65-.08.18-.2.75-.87.95-1.17.2-.3.4-.25.67-.15.27.1 1.73.81 2.02.96.3.15.5.22.57.35.08.13.08.7-.17 1.4z"/></svg>
-          Chat with a Tax Agent
-        </a>
-      </div>
     </div>
 
     <div class="lead-form-wrap">
       <div class="lead-form" id="lead-form-card">
         <div id="quiz-form-header">
-          <h3>Check your eligibility. File your simplified return in 24 hours</h3>
-          <p class="form-sub">Our expert tax agents will confirm your Small Business Relief eligibility and file within a day.</p>
+          <h3>Check your eligibility &amp; request a call back</h3>
+          <p class="form-sub">Answer 3 quick questions and enter your UAE number. A GFC tax advisor will call you back.</p>
         </div>
 
         <form id="lead-form">
@@ -1067,10 +1136,31 @@ body { padding-bottom: 74px; }
           </select>
           <p class="field-error-msg" id="lf-business-error">Please select an option.</p>
 
-          <button type="button" class="btn btn-whatsapp" id="chat-with-agent-btn">
-            <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.52 0-10 4.48-10 10 0 1.77.46 3.45 1.27 4.9L2 22l5.25-1.38a9.94 9.94 0 004.79 1.22h.01c5.52 0 10-4.48 10-10s-4.48-9.84-10.02-9.84zm5.85 14.13c-.25.7-1.45 1.34-2 1.42-.51.08-1.15.11-1.86-.12-.43-.14-.98-.32-1.68-.62-2.96-1.28-4.89-4.25-5.04-4.45-.15-.2-1.21-1.61-1.21-3.07 0-1.46.77-2.18 1.04-2.47.27-.29.6-.36.8-.36.2 0 .4 0 .57.01.18.01.43-.07.68.51.25.6.85 2.06.93 2.21.08.15.13.33.03.53-.1.2-.15.33-.3.5-.15.18-.31.4-.45.53-.15.15-.3.31-.13.61.17.3.77 1.26 1.65 2.04 1.14 1.01 2.1 1.33 2.4 1.48.3.15.48.13.65-.08.18-.2.75-.87.95-1.17.2-.3.4-.25.67-.15.27.1 1.73.81 2.02.96.3.15.5.22.57.35.08.13.08.7-.17 1.4z"/></svg>
-            Chat with a Tax Agent
+          <label for="lf-phone">UAE phone number <span class="required">*</span></label>
+          <div class="phone-input-group" id="lf-phone-group">
+            <span class="phone-prefix" aria-hidden="true">+971</span>
+            <input
+              type="tel"
+              id="lf-phone"
+              name="phone"
+              inputmode="numeric"
+              autocomplete="tel-national"
+              placeholder="50 123 4567"
+              maxlength="16"
+              aria-describedby="lf-phone-error"
+              required
+            >
+          </div>
+          <p class="field-error-msg" id="lf-phone-error" aria-live="polite">Enter a valid UAE phone number.</p>
+          <p class="phone-valid-msg" id="lf-phone-valid" aria-live="polite"><span class="valid-check">✓</span> Valid UAE number</p>
+
+          <button type="submit" class="btn btn-call" id="request-callback-btn">
+            <svg width="19" height="19" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.4"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h1.5A2.25 2.25 0 0021 19.5v-1.372a1.5 1.5 0 00-1.318-1.489l-3.895-.487a1.5 1.5 0 00-1.5.732l-.712 1.28a11.25 11.25 0 01-5.94-5.94l1.28-.712a1.5 1.5 0 00.732-1.5L9.16 6.117A1.5 1.5 0 007.672 4.8H6.3A2.25 2.25 0 004.05 7.05z"/></svg>
+            Request a Call Back
           </button>
+          <div class="callback-success" id="callback-success" role="status" aria-live="polite">
+            Thank you. We’ll call you back shortly.
+          </div>
           <p class="privacy-note">By submitting, you agree to be contacted by a GFC advisor.</p>
         </form>
       </div>
@@ -1253,54 +1343,140 @@ body { padding-bottom: 74px; }
 
 <script>
   function setFieldError(input, errorId, hasError) {
-    input.classList.toggle('field-error', hasError);
+    if (input) input.classList.toggle('field-error', hasError);
     if (errorId) {
       var errEl = document.getElementById(errorId);
       if (errEl) errEl.classList.toggle('show', hasError);
     }
   }
 
-  // Builds the WhatsApp message from the two dropdown answers that matter,
-  // per the agreed template, and opens the chat in a new tab.
-  var RECORDS_PHRASE_MAP = {
-    'Financial statements are ready': 'fully prepared',
-    'Accounts are still being prepared': 'being prepared',
-    "I'm not sure": 'requiring your help'
-  };
+  // Accept a UAE national number while keeping +971 fixed in the UI.
+  // If a user pastes +971... or starts with 0, normalize it automatically.
+  function normalizeUaePhoneDigits(value) {
+    var digits = String(value || '').replace(/\D/g, '');
+    if (digits.indexOf('971') === 0) digits = digits.substring(3);
+    if (digits.charAt(0) === '0') digits = digits.substring(1);
+    return digits;
+  }
 
-  document.getElementById('chat-with-agent-btn').addEventListener('click', function () {
-    var filedEl = document.getElementById('lf-filed');
-    var recordsEl = document.getElementById('lf-records');
-    var businessEl = document.getElementById('lf-business');
+  function isValidUaePhoneDigits(digits) {
+    // UAE mobile: 5XXXXXXXX (9 digits after +971)
+    // UAE landline: area code 2/3/4/6/7/9 + 7 digits (8 digits after +971)
+    return /^(?:5\d{8}|[234679]\d{7})$/.test(digits);
+  }
 
-    var valid = true;
+  function getUaePhoneMaxDigits(digits) {
+    // Mobile numbers beginning with 5 use 9 digits after +971.
+    // Supported UAE landline prefixes use 8 digits after +971.
+    if (/^5/.test(digits)) return 9;
+    if (/^[234679]/.test(digits)) return 8;
+    return 9;
+  }
 
-    var filedOk = filedEl.value !== '';
-    setFieldError(filedEl, 'lf-filed-error', !filedOk);
-    if (!filedOk) valid = false;
+  var callbackForm = document.getElementById('lead-form');
+  var phoneEl = document.getElementById('lf-phone');
+  var phoneGroup = document.getElementById('lf-phone-group');
+  var phoneValidMsg = document.getElementById('lf-phone-valid');
+  var callbackSuccess = document.getElementById('callback-success');
+  var callbackButton = document.getElementById('request-callback-btn');
 
-    var recordsOk = recordsEl.value !== '';
-    setFieldError(recordsEl, 'lf-records-error', !recordsOk);
-    if (!recordsOk) valid = false;
+  if (phoneEl) {
+    phoneEl.addEventListener('input', function () {
+      var cleaned = String(phoneEl.value || '').replace(/[^\d\s-]/g, '');
+      if (cleaned !== phoneEl.value) phoneEl.value = cleaned;
 
-    var businessOk = businessEl.value !== '';
-    setFieldError(businessEl, 'lf-business-error', !businessOk);
-    if (!businessOk) valid = false;
+      var phoneDigits = normalizeUaePhoneDigits(phoneEl.value);
+      var phoneOk = isValidUaePhoneDigits(phoneDigits);
+      var maxDigits = getUaePhoneMaxDigits(phoneDigits);
+      var tooManyDigits = phoneDigits.length > maxDigits;
+      var phoneError = document.getElementById('lf-phone-error');
 
-    if (!valid) {
-      var firstError = document.querySelector('.field-error');
-      if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      return;
-    }
+      // Live validation while typing:
+      // - Too many digits: show the error instantly in red.
+      // - Correct UAE number: show the verified message instantly in green.
+      // - Still incomplete: show neither message until the user finishes/submits.
+      if (phoneError) {
+        phoneError.textContent = tooManyDigits
+          ? 'Too many digits. Please check your UAE phone number.'
+          : 'Enter a valid UAE phone number.';
+      }
 
-    var businessAnswer = businessEl.value;
-    var recordsAnswer = RECORDS_PHRASE_MAP[recordsEl.value] || recordsEl.value;
+      setFieldError(phoneEl, 'lf-phone-error', tooManyDigits);
+      if (phoneGroup) {
+        phoneGroup.classList.toggle('field-error-group', tooManyDigits);
+        phoneGroup.classList.toggle('field-valid-group', phoneOk && !tooManyDigits);
+      }
+      if (phoneValidMsg) phoneValidMsg.classList.toggle('show', phoneOk && !tooManyDigits);
+      if (callbackSuccess) callbackSuccess.classList.remove('show');
+    });
+  }
 
-    var message = "Hello GFC,\n\nI have a " + businessAnswer + " with my financial records " + recordsAnswer + ".\n\nCan you help me check my Small Business Relief eligibility and file?";
+  if (callbackForm) {
+    callbackForm.addEventListener('submit', function (event) {
+      event.preventDefault();
 
-    var url = "https://api.whatsapp.com/send?phone=971503098987&text=" + encodeURIComponent(message);
-    window.open(url, '_blank', 'noopener');
-  });
+      var filedEl = document.getElementById('lf-filed');
+      var recordsEl = document.getElementById('lf-records');
+      var businessEl = document.getElementById('lf-business');
+      var valid = true;
+
+      var filedOk = filedEl && filedEl.value !== '';
+      setFieldError(filedEl, 'lf-filed-error', !filedOk);
+      if (!filedOk) valid = false;
+
+      var recordsOk = recordsEl && recordsEl.value !== '';
+      setFieldError(recordsEl, 'lf-records-error', !recordsOk);
+      if (!recordsOk) valid = false;
+
+      var businessOk = businessEl && businessEl.value !== '';
+      setFieldError(businessEl, 'lf-business-error', !businessOk);
+      if (!businessOk) valid = false;
+
+      var phoneDigits = normalizeUaePhoneDigits(phoneEl ? phoneEl.value : '');
+      var phoneOk = isValidUaePhoneDigits(phoneDigits);
+      var maxDigits = getUaePhoneMaxDigits(phoneDigits);
+      var tooManyDigits = phoneDigits.length > maxDigits;
+      var phoneError = document.getElementById('lf-phone-error');
+      if (phoneError) {
+        phoneError.textContent = tooManyDigits
+          ? 'Too many digits. Please check your UAE phone number.'
+          : 'Enter a valid UAE phone number.';
+      }
+      setFieldError(phoneEl, 'lf-phone-error', !phoneOk);
+      if (phoneGroup) {
+        phoneGroup.classList.toggle('field-error-group', !phoneOk);
+        phoneGroup.classList.toggle('field-valid-group', phoneOk);
+      }
+      if (phoneValidMsg) phoneValidMsg.classList.toggle('show', phoneOk);
+      if (!phoneOk) valid = false;
+
+      if (!valid) {
+        var firstError = document.querySelector('#lead-form .field-error');
+        if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      var fullPhone = '+971' + phoneDigits;
+      phoneEl.value = phoneDigits;
+
+      // The tracking script below listens for this event and sends the callback
+      // request through the page's existing same-origin tracking proxy.
+      document.dispatchEvent(new CustomEvent('gfc:callback-request', {
+        detail: {
+          phone: fullPhone,
+          filedBefore: filedEl.value,
+          recordsReady: recordsEl.value,
+          businessType: businessEl.value
+        }
+      }));
+
+      if (callbackButton) {
+        callbackButton.disabled = true;
+        callbackButton.textContent = 'Request Received';
+      }
+      if (callbackSuccess) callbackSuccess.classList.add('show');
+    });
+  }
 
   // Trust-strip scroll hint: hide once scrolled near the end, or if there's
   // nothing to scroll in the first place (e.g. already fits on desktop).
@@ -1318,17 +1494,17 @@ body { padding-bottom: 74px; }
 </script>
 
 
-
 <!-- =====================================================================
-     GFC SBR CTA CLICK TRACKING
-     Added only for Call + WhatsApp click tracking.
-     Original page design, CSS, structure and content remain unchanged.
+     GFC SBR CTA CLICK TRACKING - LIVE SITE SAME-ORIGIN VERSION
+     Sends browser events to /lp/sbr-click-track.php on the same domain.
+     The PHP proxy forwards the event server-side to Google Apps Script.
+     Hero form updated to support UAE callback requests.
      ===================================================================== -->
 <script>
 (function () {
   'use strict';
 
-  var SBR_TRACKING_URL = 'https://script.google.com/macros/s/AKfycbw4tKDvLLyGByFsGdWxhwaPJQq1bLdWFwCPLGDOYTld34jnH2pE9lx8WiMGm1twt-yB/exec';
+  var SBR_TRACKING_PROXY = '/lp/sbr-click-track.php';
 
   function getAttribution() {
     var params = new URLSearchParams(window.location.search);
@@ -1352,7 +1528,6 @@ body { padding-bottom: 74px; }
 
   function getButtonLocation(element) {
     if (!element || !element.closest) return 'unknown';
-
     if (element.closest('.mobile-cta')) return 'mobile_sticky';
     if (element.closest('.site-header')) return 'header';
     if (element.closest('#lead-form-card')) return 'form';
@@ -1374,7 +1549,6 @@ body { padding-bottom: 74px; }
   function sendTrackingEvent(eventType, location, buttonText, destination) {
     try {
       var attribution = getAttribution();
-
       var data = {
         event_type: eventType,
         button_location: location || 'unknown',
@@ -1398,87 +1572,60 @@ body { padding-bottom: 74px; }
 
       var body = new URLSearchParams(data);
 
-      // sendBeacon is designed for analytics events that may be followed
-      // immediately by navigation to the Phone or WhatsApp app.
+      // First choice: same-origin sendBeacon. This survives CTA navigation well
+      // and is not a cross-origin request to Google.
       if (navigator.sendBeacon) {
         try {
-          if (navigator.sendBeacon(SBR_TRACKING_URL, body)) return;
+          if (navigator.sendBeacon(SBR_TRACKING_PROXY, body)) return;
         } catch (beaconError) {}
       }
 
-      // Fallback: GET image beacon. No CORS response is required.
-      window.__gfcSbrTrackingImages = window.__gfcSbrTrackingImages || [];
+      // Fallback: same-origin image request. CSP normally allows 'self' images.
+      window.__gfcSbrProxyImages = window.__gfcSbrProxyImages || [];
       var img = new Image();
-      window.__gfcSbrTrackingImages.push(img);
+      window.__gfcSbrProxyImages.push(img);
 
       function releaseImage() {
-        var index = window.__gfcSbrTrackingImages.indexOf(img);
-        if (index > -1) window.__gfcSbrTrackingImages.splice(index, 1);
+        var index = window.__gfcSbrProxyImages.indexOf(img);
+        if (index > -1) window.__gfcSbrProxyImages.splice(index, 1);
       }
 
       img.onload = releaseImage;
       img.onerror = releaseImage;
-      img.src = SBR_TRACKING_URL + '?' + body.toString() + '&_=' + Date.now();
+      img.src = SBR_TRACKING_PROXY + '?' + body.toString() + '&_=' + Date.now();
     } catch (trackingError) {
-      // Tracking must never interfere with the Call or WhatsApp CTA.
+      // Tracking must never interfere with any CTA or callback request.
     }
   }
 
-  function buildFormWhatsAppUrl() {
-    var recordsEl = document.getElementById('lf-records');
-    var businessEl = document.getElementById('lf-business');
+  // Callback requests use the same tracking proxy so the existing
+  // attribution fields remain attached to the lead.
 
-    var phraseMap = {
-      'Financial statements are ready': 'fully prepared',
-      'Accounts are still being prepared': 'being prepared',
-      "I'm not sure": 'requiring your help'
-    };
 
-    var recordsAnswer = phraseMap[recordsEl.value] || recordsEl.value;
+  document.addEventListener('gfc:callback-request', function (event) {
+    var detail = event && event.detail ? event.detail : {};
+    var summary =
+      'Request a Call Back' +
+      ' | Filed: ' + (detail.filedBefore || '') +
+      ' | Records: ' + (detail.recordsReady || '') +
+      ' | Business: ' + (detail.businessType || '');
 
-    var message =
-      'Hello GFC,\n\nI have a ' +
-      businessEl.value +
-      ' with my financial records ' +
-      recordsAnswer +
-      '.\n\nCan you help me check my Small Business Relief eligibility and file?';
-
-    return 'https://api.whatsapp.com/send?phone=971503098987&text=' + encodeURIComponent(message);
-  }
+    sendTrackingEvent(
+      'callback_request',
+      'form',
+      summary,
+      detail.phone ? 'tel:' + detail.phone : ''
+    );
+  });
 
   document.addEventListener('click', function (event) {
     var target = event.target;
     if (!target) return;
 
-    // SVG/path clicks still resolve to their parent CTA.
     var clickable = target.closest ? target : target.parentElement;
     if (!clickable || !clickable.closest) return;
 
-    // Track the dynamic eligibility-form WhatsApp button only when
-    // all three required selections are valid.
-    var formButton = clickable.closest('#chat-with-agent-btn');
-    if (formButton) {
-      var filedEl = document.getElementById('lf-filed');
-      var recordsEl = document.getElementById('lf-records');
-      var businessEl = document.getElementById('lf-business');
-
-      if (
-        filedEl && recordsEl && businessEl &&
-        filedEl.value !== '' &&
-        recordsEl.value !== '' &&
-        businessEl.value !== ''
-      ) {
-        sendTrackingEvent(
-          'whatsapp_click',
-          'form',
-          cleanButtonText(formButton),
-          buildFormWhatsAppUrl()
-        );
-      }
-      return;
-    }
-
-    // Track every normal Call and WhatsApp anchor on the page.
+    // Every normal Call and WhatsApp anchor on the page.
     var link = clickable.closest(
       'a[href^="tel:"], ' +
       'a[href*="api.whatsapp.com"], ' +
