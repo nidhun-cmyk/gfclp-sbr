@@ -1495,16 +1495,15 @@ body { padding-bottom: 74px; }
 
 
 <!-- =====================================================================
-     GFC SBR CTA CLICK TRACKING - LIVE SITE SAME-ORIGIN VERSION
-     Sends browser events to /lp/sbr-click-track.php on the same domain.
-     The PHP proxy forwards the event server-side to Google Apps Script.
-     Hero form updated to support UAE callback requests.
+     GFC SBR CTA + CALLBACK TRACKING - DIRECT APPS SCRIPT VERSION
+     Uses the same direct Apps Script endpoint as the Corporate Tax page.
+     Tracks Call, WhatsApp and callback_request events.
      ===================================================================== -->
 <script>
 (function () {
   'use strict';
 
-  var SBR_TRACKING_PROXY = '/lp/sbr-click-track.php';
+  var SBR_TRACKING_URL = "https://script.google.com/macros/s/AKfycbxLKxC8EbOr6JWUBavlL4ZkWf-IxBwRj8_O9KfSGXmEFazfQXx_Z9uAC23u30pqJPIL/exec";
 
   function getAttribution() {
     var params = new URLSearchParams(window.location.search);
@@ -1548,7 +1547,10 @@ body { padding-bottom: 74px; }
 
   function sendTrackingEvent(eventType, location, buttonText, destination) {
     try {
+      if (!SBR_TRACKING_URL) return;
+
       var attribution = getAttribution();
+
       var data = {
         event_type: eventType,
         button_location: location || 'unknown',
@@ -1570,40 +1572,30 @@ body { padding-bottom: 74px; }
         wbraid: attribution.wbraid
       };
 
-      var body = new URLSearchParams(data);
+      var params = new URLSearchParams(data);
 
-      // First choice: same-origin sendBeacon. This survives CTA navigation well
-      // and is not a cross-origin request to Google.
-      if (navigator.sendBeacon) {
-        try {
-          if (navigator.sendBeacon(SBR_TRACKING_PROXY, body)) return;
-        } catch (beaconError) {}
-      }
-
-      // Fallback: same-origin image request. CSP normally allows 'self' images.
-      window.__gfcSbrProxyImages = window.__gfcSbrProxyImages || [];
+      // Same transport used by the working Corporate Tax landing page.
+      window.__gfcSbrTrackingImages = window.__gfcSbrTrackingImages || [];
       var img = new Image();
-      window.__gfcSbrProxyImages.push(img);
+      window.__gfcSbrTrackingImages.push(img);
 
       function releaseImage() {
-        var index = window.__gfcSbrProxyImages.indexOf(img);
-        if (index > -1) window.__gfcSbrProxyImages.splice(index, 1);
+        var index = window.__gfcSbrTrackingImages.indexOf(img);
+        if (index > -1) window.__gfcSbrTrackingImages.splice(index, 1);
       }
 
       img.onload = releaseImage;
       img.onerror = releaseImage;
-      img.src = SBR_TRACKING_PROXY + '?' + body.toString() + '&_=' + Date.now();
+      img.src = SBR_TRACKING_URL + '?' + params.toString() + '&_=' + Date.now();
+
     } catch (trackingError) {
-      // Tracking must never interfere with any CTA or callback request.
+      // Tracking must never interrupt the CTA or callback experience.
     }
   }
 
-  // Callback requests use the same tracking proxy so the existing
-  // attribution fields remain attached to the lead.
-
-
   document.addEventListener('gfc:callback-request', function (event) {
     var detail = event && event.detail ? event.detail : {};
+
     var summary =
       'Request a Call Back' +
       ' | Filed: ' + (detail.filedBefore || '') +
@@ -1625,7 +1617,6 @@ body { padding-bottom: 74px; }
     var clickable = target.closest ? target : target.parentElement;
     if (!clickable || !clickable.closest) return;
 
-    // Every normal Call and WhatsApp anchor on the page.
     var link = clickable.closest(
       'a[href^="tel:"], ' +
       'a[href*="api.whatsapp.com"], ' +
@@ -1642,9 +1633,10 @@ body { padding-bottom: 74px; }
       isCall ? 'call_click' : 'whatsapp_click',
       getButtonLocation(link),
       cleanButtonText(link),
-      href
+      isCall ? href : 'WhatsApp'
     );
   }, true);
+
 })();
 </script>
 
